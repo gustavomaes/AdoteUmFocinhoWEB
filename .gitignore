@@ -9,6 +9,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.config
 
 # Build results
 [Dd]ebug/
@@ -240,4 +241,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-*.config
