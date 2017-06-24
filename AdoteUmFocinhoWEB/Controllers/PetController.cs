@@ -29,8 +29,8 @@ namespace AdoteUmFocinhoWEB.Controllers
             int Radius = Filters.Radius;
             double UserLat = Filters.Latitude;
             double UserLong = Filters.Longitude;
-            
 
+            List<int> Gender = JsonConvert.DeserializeObject<List<int>>(Filters.Genders.ToString());
             List<int> Specie = JsonConvert.DeserializeObject<List<int>>(Filters.Specie.ToString()); 
             List<int> LifeStage = JsonConvert.DeserializeObject<List<int>>(Filters.LifeStage.ToString());
 
@@ -44,10 +44,13 @@ namespace AdoteUmFocinhoWEB.Controllers
                 p.RefreshDataPhoto(Utilities.GetWidthScreen(Request));
 
                 p.Favorite = db.Interactions.Any(ii => ii.PetId== p.Id && ii.Type == Interaction.TypeInteraction.Favorite && ii.UserId == UserId);
+                
+                if (!Gender.Contains((int)p.Specie))
+                    pets.Remove(p);
 
                 if (!Specie.Contains((int)p.Specie))
                     pets.Remove(p);
-                
+
                 if (!LifeStage.Contains((int)p.type))
                     pets.Remove(p);
 
